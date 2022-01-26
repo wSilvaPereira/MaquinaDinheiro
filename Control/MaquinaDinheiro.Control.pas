@@ -10,7 +10,7 @@ type
 
   IMaquina = interface
     ['{647E851A-4E21-41F3-BDD1-1B1A4851A14B}']
-    function MontarTroco(Troco: Currency): TInterfaceList;
+    function MontarTroco(Troco: Double): TInterfaceList;
   end;
 
   TMaquina = Class(TInterfacedObject, IMaquina)
@@ -19,7 +19,7 @@ type
   Public
     Constructor Create;
     Destructor Destroy; Override;
-    function MontarTroco(Troco: Currency): TInterfaceList;
+    function MontarTroco(Troco: Double): TInterfaceList;
 
     Class Function New : IMaquina;
   End;
@@ -29,6 +29,7 @@ implementation
 uses
   Constantes,
   Dialogs,
+  System.Math,
   Troco.Control;
 
 { TMaquina }
@@ -44,9 +45,9 @@ begin
   inherited;
 end;
 
-function TMaquina.MontarTroco(Troco: Currency): TInterfaceList;
+function TMaquina.MontarTroco(Troco: Double): TInterfaceList;
 var
-  vValor : Currency;
+  vValor : Double;
 
   Cedulas : TCedula;
 
@@ -58,7 +59,7 @@ var
     if vQuantidade > 0 then
       fLista.Add(TTroco.new(pCedula).SetQuantidade(vQuantidade));
 
-    vValor := vValor - (vQuantidade * pCedula.GetValor);
+    vValor := RoundTo(vValor - (vQuantidade * pCedula.GetValor), -2);
   end;
 
 begin

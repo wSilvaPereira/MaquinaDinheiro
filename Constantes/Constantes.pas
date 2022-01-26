@@ -19,14 +19,14 @@ Type
 
   TCedulaHelper = record helper for TCedula
   Public
-    Function GetValor : Currency;
+    Function GetValor : Double;
   end;
 
 implementation
 
 { TCedulaHelper }
 
-function TCedulaHelper.GetValor: Currency;
+function TCedulaHelper.GetValor: Double;
 begin
   case Self of
     ceNota100   : Result := 100;
