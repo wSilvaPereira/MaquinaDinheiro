@@ -10,7 +10,7 @@ type
 
   IMaquina = interface
     ['{647E851A-4E21-41F3-BDD1-1B1A4851A14B}']
-    function MontarTroco(Troco: Double): TInterfaceList;
+    function MontarTroco(Troco: Extended): TInterfaceList;
   end;
 
   TMaquina = Class(TInterfacedObject, IMaquina)
@@ -19,7 +19,7 @@ type
   Public
     Constructor Create;
     Destructor Destroy; Override;
-    function MontarTroco(Troco: Double): TInterfaceList;
+    function MontarTroco(Troco: Extended): TInterfaceList;
 
     Class Function New : IMaquina;
   End;
@@ -45,9 +45,9 @@ begin
   inherited;
 end;
 
-function TMaquina.MontarTroco(Troco: Double): TInterfaceList;
+function TMaquina.MontarTroco(Troco: Extended): TInterfaceList;
 var
-  vValor : Double;
+  vValor : Extended;
 
   Cedulas : TCedula;
 
